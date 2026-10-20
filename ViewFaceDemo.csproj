@@ -1,0 +1,31 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net9.0-windows</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <PlatformTarget>x64</PlatformTarget>
+    <UseWindowsForms>true</UseWindowsForms>
+    <AssemblyName>ViewFaceDemo</AssemblyName>
+    <RootNamespace>ViewFaceDemo</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="ViewFaceCore" Version="0.3.7" />
+    <PackageReference Include="ViewFaceCore.all_models" Version="6.0.7" />
+    <PackageReference Include="ViewFaceCore.runtime.win.x64" Version="6.0.7" />
+    <PackageReference Include="ViewFaceCore.Extension.SkiaSharp" Version="0.3.7" />
+    <PackageReference Include="OpenCvSharp4.Windows" Version="4.10.0.20241108" />
+  </ItemGroup>
+
+  <!-- 构建后把 .csta 模型文件复制到 ViewFaceCore 期望的 viewfacecore\models 目录 -->
+  <Target Name="CopyViewFaceModels" AfterTargets="Build">
+    <ItemGroup>
+      <CstaModels Include="$(OutDir)*.csta" />
+    </ItemGroup>
+    <MakeDir Directories="$(OutDir)viewfacecore\models" />
+    <Copy SourceFiles="@(CstaModels)" DestinationFolder="$(OutDir)viewfacecore\models" SkipUnchangedFiles="true" />
+  </Target>
+
+</Project>

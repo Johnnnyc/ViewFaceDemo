@@ -1,0 +1,33 @@
+## .NET
+bin/
+obj/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+*.userprefs
+*.cache
+*.cachefile
+.vs/
+.vscode/
+
+# NuGet packages（保留 local-packages 作为离线包源）
+**/packages/*
+!local-packages/**
+!local-packages/*.nupkg
+
+## 临时文件
+*.log
+stdout.txt
+stderr.txt
+result.txt
+
+## IDE
+.idea/
+*.swp
+*.swo
+*~
+
+## OS
+.DS_Store
+Thumbs.db
